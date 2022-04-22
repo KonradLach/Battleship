@@ -28,24 +28,24 @@ const createElement = {
         return heading
     }
 }
-const createContainer = () =>{
-    const main = createElement.createDiv('mainContainer');
-    document.body.appendChild(main);
-    const header = createElement.createH(1,"Battleship");
-    main.appendChild(header);
-    main.appendChild(createGameBoard());
-}
+// const createContainer = () =>{
+//     const main = createElement.createDiv('mainContainer');
+//     document.body.appendChild(main);
+//     const header = createElement.createH(1,"Battleship");
+//     main.appendChild(header);
+//     main.appendChild(createGameBoard());
+// }
 
-const createGameBoard = () =>{
-    let gameBoardSize = 10;
-    const gameBoard = createElement.createDiv('gameBoard');
-    for(let i=0; i<(gameBoardSize * gameBoardSize);i++){
-        let gameCell = createElement.createDiv(`${i}`)
-        gameCell.classList.add("cell");
-        gameBoard.appendChild(gameCell);
-    }
-    return gameBoard
-}
+// const createGameBoard = () =>{
+//     let gameBoardSize = 10;
+//     const gameBoard = createElement.createDiv('gameBoard');
+//     for(let i=0; i<(gameBoardSize * gameBoardSize);i++){
+//         let gameCell = createElement.createDiv(`${i}`)
+//         gameCell.classList.add("cell");
+//         gameBoard.appendChild(gameCell);
+//     }
+//     return gameBoard
+// }
 
 
-export {createContainer};
+export {createElement};

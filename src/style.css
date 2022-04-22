@@ -6,16 +6,55 @@ body{
 #mainContainer{
     display: block;
 }
-
-#gameBoard{
+#gameboards{
     display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin: 10px;
+}
+#playerHeader, #computerHeader{
+    width: 40vw;
+    grid-row-start: 0;
+    grid-row-end: 1;
+}
+
+#playerGameboard, #computerGameboard{
+    display: grid;
+
     grid-template-columns: repeat(10,1fr);
-    margin: 50px;
-    height: 60vw;
-    width: 60vw;
+    height: 40vw;
+    width: 40vw;
 }
 .cell{
-    border: 2px solid black;
+    border: 1px solid black;
     height: 100%;
     width: 100%;
+    text-align: center;
+    font-size: x-small;
+}
+
+.battleship{
+    background-color:#2b2424;
+    border-top: 1px solid black;
+}
+
+.submarine{
+    background-color: #1c093f;
+}
+
+.cruiser{
+    background-color: #3b647c;
+}
+
+.carrier{
+    background-color: #412d44;
+}
+
+.destroyer{
+    background-color: #cc2cc4;
+}
+.empty{
+    background-color: #ffffff;
+}
+.hit{
+    background-color: #c28a23;
 }
