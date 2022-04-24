@@ -6,6 +6,7 @@ module.exports = {
   entry:  {   
     index: './src/index.js',
     dom: './src/domManip.js',
+    factory: '/src/factories.js',
   },
   devtool: 'inline-source-map',
   plugins: [

@@ -28,24 +28,39 @@ const createElement = {
         return heading
     }
 }
-// const createContainer = () =>{
-//     const main = createElement.createDiv('mainContainer');
-//     document.body.appendChild(main);
-//     const header = createElement.createH(1,"Battleship");
-//     main.appendChild(header);
-//     main.appendChild(createGameBoard());
-// }
+const createContainer = () =>{
+    const main = createElement.createDiv('mainContainer');
+    document.body.appendChild(main);
+    const header = createElement.createH(1,"Battleship");
+    main.appendChild(header);
+}
 
-// const createGameBoard = () =>{
-//     let gameBoardSize = 10;
-//     const gameBoard = createElement.createDiv('gameBoard');
-//     for(let i=0; i<(gameBoardSize * gameBoardSize);i++){
-//         let gameCell = createElement.createDiv(`${i}`)
-//         gameCell.classList.add("cell");
-//         gameBoard.appendChild(gameCell);
-//     }
-//     return gameBoard
-// }
+const createGameBoardUI = (player1,computer1) => {
+    const main = document.getElementById('mainContainer');
+    const gameboards = createElement.createDiv('gameboards');
+    const playerGameboard = createElement.createDiv('playerGameboard');
+    const computerGameboard = createElement.createDiv('computerGameboard');
+    const playerHeader = createElement.createH(2,'Player\'s Board');
+    const computerHeader = createElement.createH(2,'Computer\'s Header')
+    playerHeader.setAttribute('id','playerHeader');
+    computerHeader.setAttribute('id','computerHeader');
+    for(let i=0; i<(player1.length);i++){
+        for(let j=0; j<(player1[i].length);j++){
+            let gameCell = createElement.createDiv(`${i}${j}`)
+            gameCell.classList.add("cell");
+            playerGameboard.appendChild(gameCell);
+        }
+    }
+    for(let i=0; i<(computer1.length);i++){
+        for(let j=0; j<(computer1[i].length);j++){
+            let gameCell = createElement.createDiv(`${i}${j}computer`)
+            gameCell.classList.add("cell");
+            computerGameboard.appendChild(gameCell);
+        }
+    }
+    main.appendChild(gameboards)
+    gameboards.append(playerHeader,playerGameboard,computerHeader,computerGameboard)
 
+}
 
-export {createElement};
+export {createElement,createContainer,createGameBoardUI};
