@@ -4,7 +4,9 @@
 const shipFactory = (name,length) => {
     //creates an array the size of the ships length to keep track of hits.
     const shipHealth = [];
-
+    let isPlaced = false;
+    const isPlacedSetter = (arg) => isPlaced = arg;
+    const isPlacedGetter = () => isPlaced;
     //updates the shipHealth array with the position the ship got hit in
     const hit = () => {
         shipHealth.push('x')
@@ -17,7 +19,7 @@ const shipFactory = (name,length) => {
         }
         return false
     }
-    return {name,length,hit, isSunk}
+    return {name,length,hit, isSunk,isPlacedGetter,isPlacedSetter}
 }
 
 //Factory function to create game board
@@ -41,7 +43,7 @@ const gameBoardFactory = () =>{
     }
     //list of ships that are still alive
     let shipsAlive = [];
-
+    const shipsAliveGetter = () => shipsAlive;
     //places ship in row and column and orients how the player wants 
     const place = (ship,row, column, orient) => {
         //checks if where the ship is to be placed is empty
@@ -77,6 +79,7 @@ const gameBoardFactory = () =>{
             for(let i = row; i<((ship.length + row));i++){
                 gameArray[i][column] = ship;
             }
+            shipsAlive.push(ship.name)
         }
         return gameArray;
     }
@@ -99,7 +102,7 @@ const gameBoardFactory = () =>{
         }
         return gameArray
     }
-    const shipsAliveGetter = () => shipsAlive;
+    
     const arrayGetter = () => gameArray;
     return{startGame, place, recieveAttack,arrayGetter, shipsAliveGetter}
 }
@@ -112,8 +115,7 @@ const player = () =>{
     playerBoard.startGame();
     //Helper function for the place method
     const playerPlace = (ship,row,column,orient) =>{
-        playerBoard.place(ship,row,column,orient);
-        return playerBoard
+        return playerBoard.place(ship,row,column,orient);
     }
 
     //recieves an attack and then sends that attack to the computerBoard

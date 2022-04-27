@@ -58,3 +58,7 @@ body{
 .hit{
     background-color: #c28a23;
 }
+
+.selected{
+    background-color: aquamarine;
+}

@@ -37,11 +37,16 @@ const createContainer = () =>{
 
 const createGameBoardUI = (player1,computer1) => {
     const main = document.getElementById('mainContainer');
+    const header = createElement.createH(1,"Place your Submarine anywhere");
+    header.setAttribute('id','header');
     const gameboards = createElement.createDiv('gameboards');
     const playerGameboard = createElement.createDiv('playerGameboard');
     const computerGameboard = createElement.createDiv('computerGameboard');
     const playerHeader = createElement.createH(2,'Player\'s Board');
-    const computerHeader = createElement.createH(2,'Computer\'s Header')
+    const computerHeader = createElement.createH(2,'Computer\'s Header');
+    const orientationBtn = document.createElement('button');
+    orientationBtn.innerText = 'Horizontal'
+    orientationBtn.setAttribute('id','orientBtn')
     playerHeader.setAttribute('id','playerHeader');
     computerHeader.setAttribute('id','computerHeader');
     for(let i=0; i<(player1.length);i++){
@@ -58,6 +63,8 @@ const createGameBoardUI = (player1,computer1) => {
             computerGameboard.appendChild(gameCell);
         }
     }
+    main.appendChild(header)
+    main.appendChild(orientationBtn)
     main.appendChild(gameboards)
     gameboards.append(playerHeader,playerGameboard,computerHeader,computerGameboard)
 
