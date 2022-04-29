@@ -1,4 +1,5 @@
 import { updateGameboard } from "./index";
+import {updateHeader} from "./domManip"
 // Code to visualize ship placement
 
 let currentShip;
@@ -73,7 +74,6 @@ const playerExit = (event) => {
             
             if(index < 10){
                 index = '0' + index
-                console.log(index);
             }
             let currentTar = document.getElementById(`${index}`);
             
@@ -97,9 +97,9 @@ const playerExit = (event) => {
 }
 
 //Places ship
-const playerPlace = (ships,player,computer,ship) => {
-    let playerBoard = document.getElementById('playerGameboard');
-    let orientationBtn = document.getElementById('orientBtn');
+const userPlace = (ships,player,computer,ship) => {
+    const playerBoard = document.getElementById('playerGameboard');
+    const orientationBtn = document.getElementById('orientBtn');
     currentShip = ship;
 
     playerBoard.removeEventListener('mouseout',playerExit);
@@ -115,10 +115,18 @@ const playerPlace = (ships,player,computer,ship) => {
         ship.isPlacedSetter(true);
         playerExit(event)
         if(isShipPlaced(ships) !== true && player.playerBoard.shipsAliveGetter().includes(ship.name)){
-            playerPlace(ships,player,computer,isShipPlaced(ships))
+            userPlace(ships,player,computer,isShipPlaced(ships))
+            updateHeader(`Place your ${isShipPlaced(ships).name} anywhere on the player board`)
         }
         else if(player.playerBoard.shipsAliveGetter().length<5){
-            playerPlace(ships,player,computer,ship)
+            userPlace(ships,player,computer,ship)
+        }
+        else if(isShipPlaced(ships)){
+            let container = document.getElementById('btnContainer')
+            container.removeChild(orientationBtn)
+            playerBoard.removeEventListener('mouseout',playerExit);
+            playerBoard.removeEventListener('mouseover',playerHover);
+            updateHeader('Click on the computer board to attack!')
         }
     }, {once:true})
 }
@@ -130,13 +138,9 @@ const isShipPlaced= (arr) => {
             return arr[i]
         }
     }
-    let playerBoard = document.getElementById('playerGameboard');
-    playerBoard.removeEventListener('mouseover',playerHover);
-    playerBoard.removeEventListener('mouseout',playerExit);
-
     return true
 }
 
 
 
-export {playerHover,playerExit,playerPlace,isShipPlaced}
+export {playerHover,playerExit,userPlace,isShipPlaced}

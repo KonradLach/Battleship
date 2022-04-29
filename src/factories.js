@@ -148,7 +148,7 @@ const computer = () => {
             computerRandomAttack(playerBoard)
         }
         else{
-            console.log(playerBoard.arrayGetter()[row][column])
+
             playerBoard.recieveAttack(row,column);
             return playerBoard.arrayGetter();
         }

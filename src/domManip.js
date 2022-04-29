@@ -31,24 +31,29 @@ const createElement = {
 const createContainer = () =>{
     const main = createElement.createDiv('mainContainer');
     document.body.appendChild(main);
-    const header = createElement.createH(1,"Battleship");
-    main.appendChild(header);
+
 }
 
 const createGameBoardUI = (player1,computer1) => {
     const main = document.getElementById('mainContainer');
-    const header = createElement.createH(1,"Place your Submarine anywhere");
+    const title = createElement.createH(1,"Battleship");
+    main.appendChild(title);
+    const header = createElement.createH(1,"Place your submarine anywhere on the player board");
     header.setAttribute('id','header');
     const gameboards = createElement.createDiv('gameboards');
     const playerGameboard = createElement.createDiv('playerGameboard');
     const computerGameboard = createElement.createDiv('computerGameboard');
     const playerHeader = createElement.createH(2,'Player\'s Board');
-    const computerHeader = createElement.createH(2,'Computer\'s Header');
+    const computerHeader = createElement.createH(2,'Computer\'s Board');
     const orientationBtn = document.createElement('button');
     orientationBtn.innerText = 'Horizontal'
     orientationBtn.setAttribute('id','orientBtn')
+    const restartBtn = document.createElement('button');
+    restartBtn.setAttribute('id','restartBtn');
+    restartBtn.textContent = 'Restart'
     playerHeader.setAttribute('id','playerHeader');
     computerHeader.setAttribute('id','computerHeader');
+    const btnContainer = createElement.createDiv('btnContainer');
     for(let i=0; i<(player1.length);i++){
         for(let j=0; j<(player1[i].length);j++){
             let gameCell = createElement.createDiv(`${i}${j}`)
@@ -64,10 +69,19 @@ const createGameBoardUI = (player1,computer1) => {
         }
     }
     main.appendChild(header)
-    main.appendChild(orientationBtn)
+    btnContainer.append(orientationBtn,restartBtn)
+    main.appendChild(btnContainer)
     main.appendChild(gameboards)
     gameboards.append(playerHeader,playerGameboard,computerHeader,computerGameboard)
-
 }
 
-export {createElement,createContainer,createGameBoardUI};
+const updateHeader = (text) => {
+    const header = document.getElementById('header');
+    header.textContent = text;
+}
+
+const restartUI = () => {
+    const main = document.getElementById('mainContainer');
+    main.innerHTML =''
+}
+export {createElement,createContainer,createGameBoardUI,updateHeader, restartUI};
