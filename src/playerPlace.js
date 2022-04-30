@@ -29,7 +29,8 @@ const playerHover = (event) => {
     }
     //same as above but everything is multiplied by 10 to make it work for vertical placement
     else{
-        if(beginIndex%10>(beginIndex+currentShip.length)%10 && (beginIndex+currentShip.length)%10 !== 0){
+        console.log(beginIndex + currentShip.length*10)
+        if((beginIndex + currentShip.length*10)>110){
         }
         else{
             for(let i = 0; i<currentShip.length*10;i+=10){
